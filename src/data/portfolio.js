@@ -108,7 +108,7 @@ export const spotlightProject = {
     { category: 'Systems Integration', items: ['Windows UI Automation', 'PyAutoGUI', 'Screen vision', 'Windows Task Scheduler'] },
     { category: 'Other', items: ['Google Calendar API', 'Gmail API', 'Spotify API', 'pytest'] },
   ],
-  github: null,
+  github: 'https://github.com/Basi467/alexis',
   videos: [
     { label: 'Highlight Reel', youtubeId: '33iR7Q80nUw' },
     { label: 'Full Walkthrough', youtubeId: 'PHZhLCTt0OQ' },
