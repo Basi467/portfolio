@@ -9,6 +9,7 @@ export const profile = {
   github: 'https://github.com/Basi467',
   linkedin: 'https://www.linkedin.com/in/basith456',
   resumeUrl: '/Muhammed_Basith_Resume.pdf',
+  roles: ['AI Engineer & Full-Stack Developer', 'Agentic AI Builder', 'RAG Systems Engineer'],
 }
 
 export const education = {

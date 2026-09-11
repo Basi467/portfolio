@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi'
 import { profile } from '../data/portfolio'
+import { useTypewriter } from '../hooks/useTypewriter'
 import profileImg from '../assets/profile1.jpg'
 
 const container = {
@@ -13,6 +14,8 @@ const item = {
 }
 
 export default function Hero() {
+  const role = useTypewriter(profile.roles)
+
   return (
     <section
       id="top"
@@ -43,7 +46,10 @@ export default function Hero() {
           >
             Hi, I&apos;m {profile.name} —
             <br />
-            <span className="text-gradient">{profile.title}</span>
+            <span className="text-gradient inline-block min-h-[1.1em]">
+              {role}
+              <span className="text-cyan animate-pulse">_</span>
+            </span>
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 text-lg text-text-dim max-w-xl">

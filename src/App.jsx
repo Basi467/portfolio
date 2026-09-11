@@ -1,3 +1,4 @@
+import NodeNetworkBackground from './components/NodeNetworkBackground'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -10,16 +11,19 @@ import Footer from './components/Footer'
 function App() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
+      <NodeNetworkBackground />
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

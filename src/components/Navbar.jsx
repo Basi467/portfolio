@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '../data/portfolio'
+import { useScrollSpy } from '../hooks/useScrollSpy'
 
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#certifications', label: 'Certifications' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', id: 'about', label: 'About' },
+  { href: '#skills', id: 'skills', label: 'Skills' },
+  { href: '#projects', id: 'projects', label: 'Projects' },
+  { href: '#certifications', id: 'certifications', label: 'Certifications' },
+  { href: '#contact', id: 'contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const activeId = useScrollSpy(links.map((l) => l.id))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -40,7 +42,12 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8 text-sm">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="text-text-dim hover:text-heading transition-colors">
+              <a
+                href={l.href}
+                className={`transition-colors ${
+                  activeId === l.id ? 'text-cyan' : 'text-text-dim hover:text-heading'
+                }`}
+              >
                 {l.label}
               </a>
             </li>
