@@ -21,7 +21,7 @@ export const education = {
 export const skills = [
   {
     category: 'Languages',
-    items: ['Python', 'Java', 'JavaScript', 'HTML', 'CSS'],
+    items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS'],
   },
   {
     category: 'AI / ML & Agents',
@@ -44,15 +44,19 @@ export const skills = [
   },
   {
     category: 'Web Development',
-    items: ['React', 'FastAPI', 'Flask', 'REST API', 'Bootstrap'],
+    items: ['React', 'FastAPI', 'Flask', 'REST API', 'Bootstrap', 'Vite', 'TanStack Query', 'Tailwind CSS', 'Framer Motion'],
   },
   {
     category: 'Systems & Automation',
     items: ['Windows UI Automation', 'PyAutoGUI', 'Windows Task Scheduler'],
   },
   {
+    category: 'Testing',
+    items: ['pytest', 'Vitest', 'React Testing Library', 'MSW', 'Playwright'],
+  },
+  {
     category: 'Databases & DevOps',
-    items: ['MongoDB', 'SQLite', 'Docker', 'Git', 'GitHub Actions', 'pytest'],
+    items: ['MongoDB', 'SQLite', 'Docker', 'Git', 'GitHub Actions', 'Render', 'Sentry'],
   },
   {
     category: 'APIs & Integrations',
