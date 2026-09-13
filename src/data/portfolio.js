@@ -155,6 +155,22 @@ export const projects = [
     github: 'https://github.com/Basi467/green-harvest',
     featured: false,
   },
+  {
+    title: 'JIBA — AI Study Buddy for KTU Students',
+    year: '2026',
+    tagline:
+      'AI-powered exam prep platform for KTU students, ranking syllabus topics by real exam-question frequency.',
+    description: [
+      'Ranks syllabus topics by real historical exam-question frequency so students know exactly what’s worth studying.',
+      'Tutors students with an OpenAI-powered chat grounded in their actual course content, and generates personalized study plans.',
+      'Full-stack React/FastAPI app backed by 144 automated tests, an LLM regression eval suite, and a live CI/CD pipeline.',
+    ],
+    tech: ['React', 'TypeScript', 'FastAPI', 'Python', 'OpenAI API', 'Docker', 'PostgreSQL/SQLite'],
+    github: 'https://github.com/Basi467/JIBA---A-kTU-BUDDY',
+    demo: 'https://jiba-a-ktu-buddy-1.onrender.com/login',
+    demoNote: 'Hosted on a free tier — first load after inactivity can take 30–60s to wake up.',
+    featured: true,
+  },
 ]
 
 export const certifications = [

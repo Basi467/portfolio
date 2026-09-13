@@ -60,14 +60,30 @@ function ProjectCard({ project, index }) {
         ))}
       </div>
 
-      <a
-        href={project.github}
-        target="_blank"
-        rel="noreferrer"
-        className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-cyan hover:gap-2.5 transition-all w-fit"
-      >
-        View on GitHub <FiArrowUpRight />
-      </a>
+      <div className="relative mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+        {project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan hover:gap-2.5 transition-all w-fit"
+          >
+            Live Demo <FiArrowUpRight />
+          </a>
+        )}
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan hover:gap-2.5 transition-all w-fit"
+        >
+          View on GitHub <FiArrowUpRight />
+        </a>
+      </div>
+
+      {project.demoNote && (
+        <p className="relative mt-3 text-xs text-text-dim italic">{project.demoNote}</p>
+      )}
     </motion.article>
   )
 }
