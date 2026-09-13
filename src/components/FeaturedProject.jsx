@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiGithub, FiPlayCircle, FiClock } from 'react-icons/fi'
-import { spotlightProject as p } from '../data/portfolio'
+import { FiGithub, FiPlayCircle, FiClock, FiArrowUpRight } from 'react-icons/fi'
 
 function ComingSoon({ icon: Icon, label }) {
   return (
@@ -54,7 +53,7 @@ function VideoShowcase({ videos }) {
   )
 }
 
-export default function FeaturedProject() {
+export default function FeaturedProject({ project: p }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
@@ -69,7 +68,7 @@ export default function FeaturedProject() {
       <div className="relative">
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="text-[10px] font-mono uppercase tracking-wider text-bg bg-gradient-to-r from-cyan to-violet px-3 py-1 rounded-full">
-            Flagship Project
+            {p.badge || 'Featured Project'}
           </span>
           <span className="text-xs font-mono text-text-dim">{p.year}</span>
         </div>
@@ -79,7 +78,7 @@ export default function FeaturedProject() {
 
         <p className="mt-6 text-text leading-relaxed max-w-3xl">{p.fullDescription}</p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           {p.github ? (
             <a
               href={p.github}
@@ -92,9 +91,22 @@ export default function FeaturedProject() {
           ) : (
             <ComingSoon icon={FiGithub} label="Repo coming soon" />
           )}
+
+          {p.demo && (
+            <a
+              href={p.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan to-violet px-5 py-2.5 text-sm font-semibold text-bg hover:opacity-90 transition-opacity"
+            >
+              Live Demo <FiArrowUpRight />
+            </a>
+          )}
         </div>
 
-        <VideoShowcase videos={p.videos} />
+        {p.demoNote && <p className="mt-3 text-xs text-text-dim italic">{p.demoNote}</p>}
+
+        {p.videos && p.videos.length > 0 && <VideoShowcase videos={p.videos} />}
 
         <div className="mt-10 grid md:grid-cols-2 gap-4">
           {p.highlights.map((h) => (

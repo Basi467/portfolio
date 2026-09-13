@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { FiGithub, FiArrowUpRight } from 'react-icons/fi'
 import SectionHeading from './SectionHeading'
 import FeaturedProject from './FeaturedProject'
-import { projects } from '../data/portfolio'
+import { projects, spotlightProjects } from '../data/portfolio'
 
 function ProjectCard({ project, index }) {
   return (
@@ -98,7 +98,9 @@ export default function Projects() {
           subtitle="A selection of AI and full-stack projects, from RAG pipelines to computer vision systems."
         />
 
-        <FeaturedProject />
+        {spotlightProjects.map((project) => (
+          <FeaturedProject project={project} key={project.title} />
+        ))}
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
