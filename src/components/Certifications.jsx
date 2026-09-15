@@ -1,40 +1,33 @@
 import { motion } from 'framer-motion'
-import { FiAward } from 'react-icons/fi'
 import SectionHeading from './SectionHeading'
+import { useInViewOnce } from '../hooks/useInViewOnce'
 import { certifications } from '../data/portfolio'
 
 export default function Certifications() {
-  return (
-    <section id="certifications" className="py-24 px-6 bg-surface/40">
-      <div className="max-w-4xl mx-auto">
-        <SectionHeading eyebrow="Certifications" title="Courses & Certifications" />
+  const [ref, inView] = useInViewOnce(0.1)
 
-        <div className="space-y-4">
-          {certifications.map((cert, i) => (
-            <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}
-              className="rounded-2xl border border-border bg-surface p-6 flex gap-4 items-start"
-            >
-              <div className="shrink-0 w-11 h-11 rounded-full bg-gradient-to-br from-cyan to-violet flex items-center justify-center text-bg text-lg">
-                <FiAward />
-              </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <h3 className="text-heading font-semibold">{cert.title}</h3>
-                  <span className="text-xs font-mono text-text-dim">{cert.period}</span>
-                </div>
-                <p className="text-sm text-cyan mt-0.5">
-                  {cert.org} · {cert.mode}
-                </p>
-                <p className="text-sm text-text-dim mt-2">{cert.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+  return (
+    <section id="certifications" className="px-6 sm:px-10 py-24 sm:py-32 max-w-6xl mx-auto">
+      <SectionHeading eyebrow="Certifications" title="Courses & certifications" />
+
+      <div ref={ref}>
+        {certifications.map((cert, i) => (
+          <motion.div
+            key={cert.title}
+            animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 50 }}
+            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: Math.min(i * 0.08, 0.32) }}
+            className="py-8 border-b border-border grid sm:grid-cols-[200px_1fr] gap-x-10 gap-y-2"
+          >
+            <span className="font-mono text-xs text-text-dim">{cert.period}</span>
+            <div>
+              <h3 className="font-serif text-xl text-heading">{cert.title}</h3>
+              <p className="text-accent text-sm mt-1">
+                {cert.org} · {cert.mode}
+              </p>
+              <p className="text-text-dim text-sm mt-2 max-w-xl">{cert.description}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

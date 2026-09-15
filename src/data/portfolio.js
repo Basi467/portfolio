@@ -75,6 +75,11 @@ export const spotlightProjects = [
       'Alexis is a voice-first assistant that chains together speech recognition, an LLM agent with ~45 tools, and real OS-level control — GUI automation, screen understanding, document search, calendar/email integration — all orchestrated through a resumable multi-step tool-calling loop.',
     fullDescription:
       "Alexis is a personal voice assistant that runs continuously in the background on Windows: say the wake word, and it listens, transcribes, reasons over a large tool library, and acts — searching files, controlling other applications, checking your calendar and email, tracking job applications, or just answering a question. The interesting engineering isn't the voice interface itself; it's the agent underneath it — a tool-calling loop that can chain multiple actions in one turn, pause mid-plan to confirm a risky action, and resume the same plan afterward instead of starting over.",
+    stats: [
+      { value: 45, suffix: '+', label: 'Tools' },
+      { value: 12, suffix: '', label: 'Max chained steps' },
+      { value: 49, suffix: '', label: 'Automated tests' },
+    ],
     highlights: [
       {
         title: 'Agentic tool-calling loop',
@@ -130,6 +135,11 @@ export const spotlightProjects = [
       'An AI-powered exam prep platform for APJ Abdul Kalam Technological University students. Ranks syllabus topics by real historical exam-question frequency, tutors students with an OpenAI-powered chat grounded in their actual course content, and generates personalized study plans.',
     fullDescription:
       "KTU students prepping for exams have to manually cross-reference dense syllabus PDFs against years of scattered previous-year question papers to figure out what's actually worth studying — there was no tool connecting what's in the syllabus to what actually gets asked. JIBA is a full-stack web app that makes that connection automatically: it ingests syllabus and past-exam data, scores every topic by how often and how recently it's appeared in real exams, and surfaces that as a ranked, prioritized study experience — a predicted high-priority topic list, a guided \"teach me this\" flow for a real AI tutor, and a queue of repeated exam questions with AI-generated model answers. Every AI response is grounded in the student's actual syllabus and department, via a context-injection pipeline that pulls the relevant module/topic data into every prompt, rather than answering generically.",
+    stats: [
+      { value: 47, suffix: '', label: 'Backend tests' },
+      { value: 88, suffix: '', label: 'Frontend tests' },
+      { value: 9, suffix: '', label: 'End-to-end tests' },
+    ],
     highlights: [
       {
         title: 'Exam-frequency topic ranking',

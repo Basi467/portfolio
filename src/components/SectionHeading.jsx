@@ -1,19 +1,33 @@
 import { motion } from 'framer-motion'
+import RevealText from './RevealText'
+import { useInViewOnce } from '../hooks/useInViewOnce'
 
 export default function SectionHeading({ eyebrow, title, subtitle }) {
+  const [ref, inView] = useInViewOnce()
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="mb-12 text-center"
-    >
+    <div ref={ref} className="mb-16">
       {eyebrow && (
-        <p className="font-mono text-sm text-cyan mb-2 tracking-wide">{eyebrow}</p>
+        <motion.p
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 12 }}
+          transition={{ duration: 0.5 }}
+          className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3"
+        >
+          {eyebrow}
+        </motion.p>
       )}
-      <h2 className="text-3xl sm:text-4xl font-bold text-heading">{title}</h2>
-      {subtitle && <p className="mt-3 text-text-dim max-w-2xl mx-auto">{subtitle}</p>}
-    </motion.div>
+      <h2 className="font-serif text-4xl sm:text-5xl text-heading leading-tight">
+        <RevealText text={title} />
+      </h2>
+      {subtitle && (
+        <motion.p
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 12 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mt-4 text-text-dim max-w-xl"
+        >
+          {subtitle}
+        </motion.p>
+      )}
+    </div>
   )
 }

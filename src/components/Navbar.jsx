@@ -25,27 +25,25 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'bg-bg/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
+        scrolled ? 'glass border-b border-accent/20' : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm font-semibold text-heading">
-          <span className="text-gradient">&lt;</span>
+      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 sm:px-10 py-5">
+        <a href="#top" className="font-serif text-xl text-heading">
           {profile.name}
-          <span className="text-gradient">/&gt;</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-8 text-sm">
+        <ul className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className={`transition-colors ${
-                  activeId === l.id ? 'text-cyan' : 'text-text-dim hover:text-heading'
+                className={`link-underline transition-colors ${
+                  activeId === l.id ? 'text-accent text-glow' : 'text-text-dim hover:text-heading'
                 }`}
               >
                 {l.label}
@@ -57,7 +55,7 @@ export default function Navbar() {
         <a
           href={profile.resumeUrl}
           download
-          className="hidden md:inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm text-heading hover:border-cyan hover:text-cyan transition-colors"
+          className="hidden md:inline-flex link-underline text-xs font-mono uppercase tracking-widest text-heading"
         >
           Resume
         </a>
@@ -72,18 +70,18 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-surface border-t border-border px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-bg border-t border-border px-6 py-6 flex flex-col gap-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-text-dim hover:text-heading transition-colors text-sm"
+              className="font-serif text-2xl text-heading"
             >
               {l.label}
             </a>
           ))}
-          <a href={profile.resumeUrl} download className="text-cyan text-sm">
+          <a href={profile.resumeUrl} download className="font-mono text-xs uppercase tracking-widest text-accent mt-2">
             Download Resume
           </a>
         </div>

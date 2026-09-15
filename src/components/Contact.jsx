@@ -1,54 +1,79 @@
 import { motion } from 'framer-motion'
-import { FiGithub, FiLinkedin, FiMail, FiPhone } from 'react-icons/fi'
-import SectionHeading from './SectionHeading'
+import { FiArrowUpRight } from 'react-icons/fi'
+import RevealText from './RevealText'
+import Magnetic from './Magnetic'
+import { useInViewOnce } from '../hooks/useInViewOnce'
 import { profile } from '../data/portfolio'
 
 const links = [
-  { icon: FiMail, label: profile.email, href: `mailto:${profile.email}` },
-  { icon: FiPhone, label: profile.phone, href: `tel:${profile.phone.replace(/[^+\d]/g, '')}` },
-  { icon: FiGithub, label: 'GitHub', href: profile.github },
-  { icon: FiLinkedin, label: 'LinkedIn', href: profile.linkedin },
+  { label: profile.phone, href: `tel:${profile.phone.replace(/[^+\d]/g, '')}` },
+  { label: 'GitHub', href: profile.github },
+  { label: 'LinkedIn', href: profile.linkedin },
 ]
 
 export default function Contact() {
-  return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-3xl mx-auto text-center">
-        <SectionHeading
-          eyebrow="Contact"
-          title="Let's work together"
-          subtitle="I'm currently available for freelance projects and open to entry-level AI Engineering and Full-Stack Development roles. Feel free to reach out."
-        />
+  const [ref, inView] = useInViewOnce(0.15)
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+  return (
+    <section
+      id="contact"
+      ref={ref}
+      className="relative px-6 sm:px-10 py-28 sm:py-40 max-w-6xl mx-auto overflow-hidden"
+    >
+      <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-accent/10 blur-[140px] pointer-events-none" />
+
+      <p className="relative font-mono text-xs uppercase tracking-[0.2em] text-accent mb-6">
+        Contact
+      </p>
+
+      <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-heading leading-[1.05]">
+        <RevealText text="Let's work" />
+        <br />
+        <RevealText text="together" delay={0.1} />
+      </h2>
+
+      <motion.p
+        animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 16 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="mt-8 text-lg text-text-dim max-w-lg"
+      >
+        I'm currently available for freelance projects and open to entry-level AI
+        Engineering and Full-Stack Development roles.
+      </motion.p>
+
+      <motion.div
+        animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.92 }}
+        transition={{ duration: 0.6, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+        className="mt-10"
+      >
+        <Magnetic strength={0.25}>
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan to-violet px-8 py-3.5 text-sm font-semibold text-bg hover:opacity-90 transition-opacity glow"
+            className="group inline-flex items-center gap-3 font-serif text-2xl sm:text-4xl text-heading link-underline transition-[text-shadow] hover:text-glow"
           >
-            <FiMail /> Say hello
+            {profile.email}
+            <FiArrowUpRight className="text-accent transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
+        </Magnetic>
+      </motion.div>
 
-          <div className="mt-10 grid sm:grid-cols-2 gap-4 text-left">
-            {links.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text hover:border-cyan hover:text-cyan transition-colors"
-              >
-                <Icon className="shrink-0" />
-                <span className="truncate">{label}</span>
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+      <motion.div
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 font-mono text-xs uppercase tracking-widest"
+      >
+        {links.map((l) => (
+          <a
+            key={l.label}
+            href={l.href}
+            target={l.href.startsWith('http') ? '_blank' : undefined}
+            rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
+            className="link-underline text-text-dim hover:text-heading transition-colors"
+          >
+            {l.label}
+          </a>
+        ))}
+      </motion.div>
     </section>
   )
 }
